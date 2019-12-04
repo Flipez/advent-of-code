@@ -1,4 +1,4 @@
-lines = File.read('input').split("\n")
+lines = File.read("input").split("\n")
 
 total_fuel = 0
 lines.each do |mass|
