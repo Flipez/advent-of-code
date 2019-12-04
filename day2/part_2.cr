@@ -1,14 +1,18 @@
-intcodes = File.read('input').split(',')
+intcodes = File.read("input").split(",").map do |intcode|
+  intcode.to_i
+end
 
 def calculate_output(verb, noun)
-  intcodes = File.read('input').split(',')
+  intcodes = File.read("input").split(",").map do |intcode|
+    intcode.to_i
+  end
   current_position = 0
   current_opcode = 0
   
   intcodes[1] = verb
   intcodes[2] = noun
   
-  until current_opcode == 99 do
+  until current_opcode == 99
     current_opcode = intcodes[current_position].to_i
     a = intcodes[current_position + 1].to_i
     b = intcodes[current_position + 2].to_i
