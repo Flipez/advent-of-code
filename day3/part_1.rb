@@ -41,12 +41,9 @@ wire_1.delete([0,0])
 wire_2.delete([0,0])
 
 intersections = (wire_1 & wire_2)
-steps = []
 
-intersections.each do |intersection|
-  a = wire_1.index(intersection) + 1
-  b = wire_2.index(intersection) + 1
-  steps << a + b
+costs = intersections.map do |point|
+  (0-point[0]).abs + (0-point[1]).abs
 end
 
-p steps.sort.first
+p costs.sort.first
