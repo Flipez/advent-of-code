@@ -1,9 +1,9 @@
-wires = File.read('input').split("\n")
+wires = File.read("input").split("\n")
 
 wire_1 = [[0,0]]
 wire_2 = [[0,0]]
 
-wires[0].split(',').each do |instruction|
+wires[0].split(",").each do |instruction|
   direction = instruction[0]
   lenght = instruction[1..-1].to_i
   x = wire_1[-1][0]
@@ -20,7 +20,7 @@ wires[0].split(',').each do |instruction|
   end
 end
 
-wires[1].split(',').each do |instruction|
+wires[1].split(",").each do |instruction|
   direction = instruction[0]
   lenght = instruction[1..-1].to_i
   x = wire_2[-1][0]
