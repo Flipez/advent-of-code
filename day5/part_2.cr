@@ -1,6 +1,6 @@
 intcodes = File.read("input").split(",")
 output = 0
-input = 1
+input = 5
 
 def parse_parameter_value(position, mode, intcodes)
   case mode
@@ -52,12 +52,61 @@ def calculate_output(intcodes, input)
     when 4
       puts "got opcode 4: #{parse_parameter_value(current_position + 1, first_parameter_mode, intcodes)}"
       current_position += 2
+    when 5
+      a = parse_parameter_value(current_position + 1, first_parameter_mode, intcodes)
+      b = parse_parameter_value(current_position + 2, second_parameter_mode, intcodes)
+
+      if a && b
+        if a.to_i.zero?
+          current_position += 3
+        else
+          current_position = b.to_i
+        end
+      end
+    when 6
+      a = parse_parameter_value(current_position + 1, first_parameter_mode, intcodes)
+      b = parse_parameter_value(current_position + 2, second_parameter_mode, intcodes)
+
+      if a && b
+        if a.to_i.zero?
+          current_position = b.to_i
+        else
+          current_position += 3
+        end
+      end
+    when 7
+      a = parse_parameter_value(current_position + 1, first_parameter_mode, intcodes)
+      b = parse_parameter_value(current_position + 2, second_parameter_mode, intcodes)
+      c = parse_parameter_value(current_position + 3, third_parameter_mode, intcodes)
+
+      if a && b && c
+        if a.to_i < b.to_i
+          intcodes[c.to_i] = 1.to_s
+        else
+          intcodes[c.to_i] = 0.to_s
+        end
+        current_position += 4
+      end
+    when 8
+      a = parse_parameter_value(current_position + 1, first_parameter_mode, intcodes)
+      b = parse_parameter_value(current_position + 2, second_parameter_mode, intcodes)
+      c = parse_parameter_value(current_position + 3, third_parameter_mode, intcodes)
+
+      if a && b && c
+        if a.to_i == b.to_i
+          intcodes[c.to_i] = 1.to_s
+        else
+          intcodes[c.to_i] = 0.to_s
+        end
+        current_position += 4
+      end
     when 99
       break
     end
   end
-
-  intcodes[0]
 end
 
-p calculate_output(intcodes, input)
+# intcodes[1] = 12.to_s
+# intcodes[2] = 2.to_s
+
+calculate_output(intcodes, input)
