@@ -77,7 +77,7 @@ def calculate_output(intcodes, input)
     when 7
       a = parse_parameter_value(current_position + 1, first_parameter_mode, intcodes)
       b = parse_parameter_value(current_position + 2, second_parameter_mode, intcodes)
-      c = parse_parameter_value(current_position + 3, third_parameter_mode, intcodes)
+      c = intcodes[current_position + 3]
 
       if a && b && c
         if a.to_i < b.to_i
@@ -90,7 +90,7 @@ def calculate_output(intcodes, input)
     when 8
       a = parse_parameter_value(current_position + 1, first_parameter_mode, intcodes)
       b = parse_parameter_value(current_position + 2, second_parameter_mode, intcodes)
-      c = parse_parameter_value(current_position + 3, third_parameter_mode, intcodes)
+      c = intcodes[current_position + 3]
 
       if a && b && c
         if a.to_i == b.to_i
@@ -105,8 +105,5 @@ def calculate_output(intcodes, input)
     end
   end
 end
-
-# intcodes[1] = 12.to_s
-# intcodes[2] = 2.to_s
 
 calculate_output(intcodes, input)
