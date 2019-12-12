@@ -141,7 +141,9 @@ class InOutProxy
 end
 
 outputs = [] of Int32
-[0, 1, 2, 3, 4].permutations.to_a.each do |inputs|
+permutations = [5, 6, 7, 8, 9].permutations.to_a
+i = 1
+permutations.each do |inputs|
   in_a = InOutProxy.new
   in_a.write(inputs[0])
   in_a.write(0)
@@ -155,31 +157,24 @@ outputs = [] of Int32
   in_e.write(inputs[4])
 
   spawn do
-    p "a start"
     IntcodeComputer.new(File.read("input"), in_a, in_b).process
-    p "a end"
   end
   spawn do
-    p "b start"
     IntcodeComputer.new(File.read("input"), in_b, in_c).process
-    p "b end"
   end
   spawn do
-    p "c start"
     IntcodeComputer.new(File.read("input"), in_c, in_d).process
-    p "c end"
   end
   spawn do
-    p "d start"
     IntcodeComputer.new(File.read("input"), in_d, in_e).process
-    p "d end"
   end
 
-  p "e start"
   IntcodeComputer.new(File.read("input"), in_e, in_a).process
 
   output = in_a.read
   outputs << output
+  p "#{i} of #{permutations.size}"
+  i += 1
 end
 
 p outputs.sort.last
