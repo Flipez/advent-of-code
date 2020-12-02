@@ -1,5 +1,4 @@
-lines = File.readlines("./input")
-
+lines = File.readlines('./input')
 valid_passwords = []
 
 lines.each do |line|
@@ -8,4 +7,4 @@ lines.each do |line|
   valid_passwords << password if password.count(char).between?(min.to_i, max.to_i)
 end
 
-p valid_passwords.count
+puts valid_passwords.count
