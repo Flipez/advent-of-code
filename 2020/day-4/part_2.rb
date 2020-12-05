@@ -33,11 +33,7 @@ passports.each do |passport|
         key, value = field.split(':')
 
         case key
-        when 'byr'
-          REQUIRED_FIELDS[key].include? value.to_i
-        when 'iyr'
-          REQUIRED_FIELDS[key].include? value.to_i
-        when 'eyr'
+        when 'byr', 'iyr', 'eyr'
           REQUIRED_FIELDS[key].include? value.to_i
         when 'hgt'
           if value.delete! 'in'
@@ -45,12 +41,10 @@ passports.each do |passport|
           elsif value.delete! 'cm'
             REQUIRED_FIELDS[key][:cm].include? value.to_i
           end
-        when 'hcl'
+        when 'hcl', 'pid'
           value.match? REQUIRED_FIELDS[key]
         when 'ecl'
-          REQUIRED_FIELDS[key.to_s].include? value
-        when 'pid'
-          value.match? REQUIRED_FIELDS[key]
+          REQUIRED_FIELDS[key].include? value
         when 'cid'
           true
         end
