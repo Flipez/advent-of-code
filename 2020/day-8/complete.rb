@@ -37,7 +37,7 @@ def repair(code)
 
     return acc if reached_line >= code.size
 
-	  code[line][0] = instruction[0] == 'jmp' ? 'nop' : 'jmp'
+    code[line][0] = instruction[0] == 'jmp' ? 'nop' : 'jmp'
   end
 end
 
