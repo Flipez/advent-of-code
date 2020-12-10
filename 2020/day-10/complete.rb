@@ -25,14 +25,10 @@ def outlets(numbers, current, variants)
   unless variants[current]
     lines = []
 
-    one   = current + 1
-    two   = current + 2
-    three = current + 3
-
-    lines << outlets(numbers, one, variants)   if numbers.include?(one)
-    lines << outlets(numbers, two, variants)   if numbers.include?(two)
-    lines << outlets(numbers, three, variants) if numbers.include?(three)
-
+    ((current + 1)..(current + 3)).each do |step|
+      lines << outlets(numbers, step, variants) if numbers.include? step
+    end
+    
     variants[current] = lines.sum
   end
 
