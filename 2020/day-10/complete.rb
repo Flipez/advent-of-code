@@ -23,11 +23,11 @@ def outlets(numbers, current, variants)
   return 1 if current == numbers.last
 
   unless variants[current]
-
-    one = current + 1
-    two = current + 2
-    three = current + 3
     lines = []
+
+    one   = current + 1
+    two   = current + 2
+    three = current + 3
 
     lines << outlets(numbers, one, variants)   if numbers.include?(one)
     lines << outlets(numbers, two, variants)   if numbers.include?(two)
